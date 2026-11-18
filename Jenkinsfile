@@ -17,6 +17,7 @@ pipeline {
         stage('Verification Java') {
             steps {
                 bat 'java -version'
+                echo 'Pipeline declenche automatiquement depuis GitHub !'
             }
         }
 
