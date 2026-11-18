@@ -17,18 +17,26 @@ pipeline {
         stage('Verification Java') {
             steps {
                 bat 'java -version'
-                echo 'Pipeline declenche automatiquement depuis GitHub !'
             }
         }
 
         stage('Build Maven') {
             steps {
-                bat 'mvnw.cmd -B clean verify'
+                bat 'mvnw.cmd -B clean compile'
+            }
+        }
+
+        stage('Tests unitaires JUnit') {
+            steps {
+                bat 'mvnw.cmd -B test'
             }
         }
     }
 
     post {
+        always {
+            echo 'Execution terminee'
+        }
         success {
             echo 'BUILD SUCCESS'
         }
