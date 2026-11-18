@@ -20,7 +20,7 @@ pipeline {
             }
         }
 
-        stage('Build et Tests des 5 modules de ebankApp') {
+        stage('Build et Tests des 5 modules') {
             steps {
                 bat 'mvnw.cmd -B clean verify'
             }
