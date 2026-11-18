@@ -20,15 +20,9 @@ pipeline {
             }
         }
 
-        stage('Build Maven') {
+        stage('Build et Tests des 5 modules') {
             steps {
-                bat 'mvnw.cmd -B clean compile'
-            }
-        }
-
-        stage('Tests unitaires JUnit') {
-            steps {
-                bat 'mvnw.cmd -B test'
+                bat 'mvnw.cmd -B clean verify'
             }
         }
     }
