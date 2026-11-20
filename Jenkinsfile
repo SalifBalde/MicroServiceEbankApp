@@ -26,7 +26,7 @@ pipeline {
             }
         }
 
-        stage('Verification Docker') {
+        stage('Verifier le demarrage de Docker') {
             steps {
                 bat 'docker --version'
                 bat 'docker compose version'
