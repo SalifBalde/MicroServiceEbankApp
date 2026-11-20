@@ -25,6 +25,13 @@ pipeline {
                 bat 'mvnw.cmd -B clean verify'
             }
         }
+
+        stage('Verification Docker') {
+            steps {
+                bat 'docker --version'
+                bat 'docker compose version'
+            }
+        }
     }
 
     post {
