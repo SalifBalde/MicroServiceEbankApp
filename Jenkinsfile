@@ -32,6 +32,18 @@ pipeline {
                 bat 'docker compose version'
             }
         }
+        stage('Build Docker Images') {
+            steps {
+                echo 'Construction des images Docker'
+                bat 'docker compose build'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploiement des microservices'
+                bat 'docker compose up -d'
+            }
+        }
     }
 
     post {
