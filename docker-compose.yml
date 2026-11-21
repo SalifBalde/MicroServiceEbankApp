@@ -59,6 +59,7 @@ services:
       context: ./ebank-chatBott
       dockerfile: Dockerfile
     container_name: ebank-chatbott
+    restart: on-failure
     ports:
       - "8084:8084"
     environment:
