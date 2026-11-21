@@ -36,13 +36,15 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 echo 'Construction des images Docker'
-                bat 'docker compose build'
+
+                bat '"C:\\Users\\winner\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker-compose.exe" build'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploiement des microservices'
-                bat 'docker compose up -d'
+                echo 'Déploiement des microservices'
+
+                bat '"C:\\Users\\winner\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker-compose.exe" up -d'
             }
         }
     }
