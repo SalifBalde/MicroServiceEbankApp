@@ -16,7 +16,8 @@ pipeline {
 
         stage('Verification Java') {
             steps {
-                bat '"C:\\Users\\winner\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" --version'            }
+                bat 'java -version'
+            }
         }
 
         stage('Build et Tests des 5 modules') {
@@ -27,8 +28,9 @@ pipeline {
 
         stage('Verification de Docker') {
             steps {
-                bat 'docker --version'
-                bat 'docker compose version'
+                bat '"C:\\Users\\winner\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" --version'
+
+                bat '"C:\\Users\\winner\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" compose version'
             }
         }
         stage('Build Docker Images') {
