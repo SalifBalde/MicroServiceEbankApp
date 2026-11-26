@@ -1,13 +1,15 @@
+
 package com.ebank.customerservice;
 
+import java.util.List;
+
 import com.ebank.customerservice.entites.Customer;
-import com.ebank.customerservice.services.CustomerService;
+import com.ebank.customerservice.repository.CustomerRepository;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.util.List;
 
 @SpringBootApplication
 public class CustomerServiceApplication {
@@ -17,17 +19,14 @@ public class CustomerServiceApplication {
     }
 
     @Bean
-    CommandLineRunner commandLineRunner(CustomerService customerService){
-        return  args -> {
+    CommandLineRunner commandLineRunner(CustomerRepository customerRepository) {
+        return args -> {
             List<String> names = List.of("Salif", "Mohamed", "dev");
-            names.forEach(name ->{
-                customerService.saveCustomer(Customer.builder()
-                                .name(name)
-                                .email(name+"@gmail.com")
 
-                        .build());
-            });
+            names.forEach(name -> customerRepository.save(Customer.builder()
+                    .name(name)
+                    .email(name + "@gmail.com")
+                    .build()));
         };
     }
-
 }

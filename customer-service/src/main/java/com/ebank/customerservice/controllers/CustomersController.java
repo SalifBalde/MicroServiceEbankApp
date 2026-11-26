@@ -1,11 +1,14 @@
 package com.ebank.customerservice.controllers;
 
 
+import java.util.List;
+
 import com.ebank.customerservice.entites.Customer;
 import com.ebank.customerservice.services.CustomerService;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CustomersController {
@@ -31,4 +34,22 @@ public class CustomersController {
         return  customerService.saveCustomer(customer);
     }
 
+    @DeleteMapping("/customer/{id}")
+    public void deleteCustomer(@PathVariable Long id) {
+        customerService.deleteCustomer(id);
+    }
+
+
+
+    @GetMapping("/customer/email/{email}")
+    public Customer findCustomerByEmail(
+            @PathVariable String email,
+            @AuthenticationPrincipal Jwt jwt) {
+
+        if (jwt.getClaimAsStringList("roles").contains("CUSTOMER")) {
+            return customerService.findOwnProfile(email);
+        }
+
+        return customerService.findCustomerByEmail(email);
+    }
 }

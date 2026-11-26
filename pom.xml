@@ -25,6 +25,7 @@
         <module>gateway-service</module>
         <module>discoveru-service</module>
         <module>ebank-chatBott</module>
+        <module>auth-service</module>
     </modules>
 
 </project>

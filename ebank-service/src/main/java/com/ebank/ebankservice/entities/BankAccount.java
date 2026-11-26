@@ -16,7 +16,8 @@ public class BankAccount {
 
    @Id
     private String id ;
-    private Date createAt;
+ @Temporal(TemporalType.TIMESTAMP)
+ private Date createAt;
     private  double balance;
     private  String type;
     private long  customerId;
