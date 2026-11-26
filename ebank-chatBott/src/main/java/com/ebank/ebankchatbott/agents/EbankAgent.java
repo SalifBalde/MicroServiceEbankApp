@@ -56,8 +56,7 @@ public class EbankAgent {
 
         Tu dois respecter les autorisations définies
         par les services bancaires.
-        """)
-                .defaultAdvisors(
+        """).defaultAdvisors(
                         MessageChatMemoryAdvisor.builder(chatMemory).build()
                 )
                 .build();
@@ -85,8 +84,7 @@ public class EbankAgent {
                     .build();
 
             return chatClient.prompt()
-                    .user(query)
-                    .toolCallbacks(provider.getToolCallbacks())
+                    .user(query).tools(provider.getToolCallbacks())
                     .advisors(advisor -> advisor.param(
                             ChatMemory.CONVERSATION_ID,
                             conversationId
