@@ -6,11 +6,13 @@ import java.util.List;
 import com.ebank.ebankservice.entities.BankAccount;
 import com.ebank.ebankservice.services.BankAccountService;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 public class BankAccountController {
 
@@ -31,8 +33,8 @@ public class BankAccountController {
     public List<BankAccount> allAccount(
             @AuthenticationPrincipal Jwt jwt) {
 
-        System.out.println("JWT SUBJECT = " + jwt.getSubject());
-        System.out.println("JWT ROLES = " + jwt.getClaimAsStringList("roles"));
+        log.info("JWT SUBJECT = {}", jwt.getSubject());
+        log.info("JWT ROLES = {}", jwt.getClaimAsStringList("roles"));
 
         if (hasRole(jwt, "ADMIN") || hasRole(jwt, "EMPLOYEE")) {
             return bankAccountService.allAccount();
